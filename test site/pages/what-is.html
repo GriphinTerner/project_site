@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Что такое подростковые отношения</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="top-nav">
+            <a href="../index.html" class="logo">Психология отношений</a>
+            <ul>
+                <li><a href="../index.html">Главная</a></li>
+                <li><a href="#sections">Разделы</a></li>
+                <li><a href="#help">Помощь</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-wrapper">
+        <button class="menu-toggle" aria-label="Открыть меню">
+            <span class="menu-icon"></span>
+        </button>
+        
+        <aside class="sidebar" id="sidebar">
+            <button class="menu-close" aria-label="Закрыть меню"></button>
+            <nav class="section-nav">
+                <ul>
+                    <li><a href="what-is.html" class="active">Что такое отношения</a></li>
+                    <li><a href="types.html">Виды отношений</a></li>
+                    <li><a href="teen-period.html">Подростковый период</a></li>
+                    <li><a href="teen-stages.html">Этапы взросления</a></li>
+                    <li><a href="teen-features.html">Особенности подростков</a></li>
+                    <li><a href="parents-role.html">Роль родителей</a></li>
+                    <li><a href="teen-love.html">Первая любовь</a></li>
+                    <li><a href="reasons.html">Причины поиска отношений</a></li>
+                    <li><a href="differences.html">Зрелые vs детские отношения</a></li>
+                    <li><a href="solutions.html">Советы и решения</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="page-content">
+            <article class="content-article">
+                <header class="article-header">
+                    <h1>Что такое отношения?</h1>
+                    <img src="../images/what-is-relationships.jpg" alt="Отношения между людьми" class="article-image">
+                </header>
+
+                <div class="article-content">
+                    <p>Отношения между людьми – это связь между кем-то, которая возникает в процессе общения или совершения какой-либо деятельности. Также это можно назвать формальной или неформальной договоренностью, которая создается и держится на основе взаимного интереса с обеих сторон.</p>
+                    
+                    <p>Если простыми словами, отношения – это то, как мы общаемся, т. е. взаимодействуем с другими людьми. Причем не столь важно, с какими именно. Отношения – это не только вы и ваш любимый человек. Вы имеете отношения с огромным количеством людей: с коллегами, близкими и далекими друзьями, родственниками, знакомыми, начальством, детьми, родителями и т. д.</p>
+
+                    <div class="article-quote">
+                        <blockquote>
+                            "Отношения – это основа человеческого общества, определяющая качество нашей жизни и глубину связей с окружающими людьми."
+                        </blockquote>
+                    </div>
+
+                    <div class="article-summary">
+                        <h3>Ключевые моменты:</h3>
+                        <ul>
+                            <li>Отношения возникают в процессе общения</li>
+                            <li>Основаны на взаимном интересе</li>
+                            <li>Охватывают все сферы жизни</li>
+                            <li>Могут быть формальными и неформальными</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <footer class="article-footer">
+                    <div class="navigation-links">
+                        <a href="types.html" class="next-article">Следующая статья: Виды отношений →</a>
+                    </div>
+                </footer>
+            </article>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>О проекте</h3>
+                <p>Проект создан для помощи подросткам и их родителям в понимании природы отношений и их развития.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p>Email: info@teen-psychology.ru</p>
+                <p>Телефон: 8-800-123-45-67</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Made by Griphin Terner. All rights are reserved</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menuClose = document.querySelector('.menu-close');
+        const sidebar = document.querySelector('.sidebar');
+        const body = document.body;
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.add('active');
+            body.classList.add('menu-active');
+        });
+
+        menuClose.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            body.classList.remove('menu-active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !menuToggle.contains(e.target) && sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+                body.classList.remove('menu-active');
+            }
+        });
+    </script>
+</body>
+</html> 
