@@ -96,6 +96,27 @@ document.addEventListener('DOMContentLoaded', function() {
             lastScroll = currentScroll;
         });
     }
+
+    const mobileMenuButton = document.querySelector('.mobile-menu-toggle');
+
+    if (mobileMenuButton && sidebar) {
+        mobileMenuButton.addEventListener('click', function() {
+            this.classList.toggle('active');
+            sidebar.classList.toggle('active');
+            body.classList.toggle('menu-active');
+        });
+
+        // Закрытие при клике вне меню
+        document.addEventListener('click', function(e) {
+            if (!sidebar.contains(e.target) && 
+                !mobileMenuButton.contains(e.target) && 
+                sidebar.classList.contains('active')) {
+                mobileMenuButton.classList.remove('active');
+                sidebar.classList.remove('active');
+                body.classList.remove('menu-active');
+            }
+        });
+    }
 });
 
 // Функция для анимации элементов при прокрутке
@@ -141,4 +162,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Запускаем анимации
     handleScrollAnimations();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Находим элементы
+    const burger = document.querySelector('.burger-menu');
+    const menu = document.querySelector('.sidebar');
+    
+    // Проверяем, что элементы найдены
+    console.log('Burger:', burger);
+    console.log('Menu:', menu);
+
+    // Добавляем обработчик
+    if (burger && menu) {
+        burger.addEventListener('click', function(e) {
+            // Останавливаем всплытие события
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Логируем клик
+            console.log('Burger clicked!');
+            
+            // Переключаем классы
+            burger.classList.toggle('active');
+            menu.classList.toggle('active');
+            
+            // Проверяем состояние после клика
+            console.log('Burger active:', burger.classList.contains('active'));
+            console.log('Menu active:', menu.classList.contains('active'));
+        });
+    }
 }); 

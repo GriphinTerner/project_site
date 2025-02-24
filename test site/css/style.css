@@ -291,14 +291,24 @@ body.home header {
     }
 
     .top-nav {
-        flex-direction: column;
-        gap: 20px;
+        padding: 10px 20px;
     }
 
-    .top-nav ul {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
+    .top-nav .logo {
+        font-size: 24px;
+        line-height: 1.2;
+    }
+
+    .burger-menu {
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 18px;
+    }
+
+    .sidebar {
+        top: 70px;
+        height: calc(100vh - 70px);
     }
 
     .sections-grid {
@@ -309,48 +319,59 @@ body.home header {
         justify-content: center;
     }
 
-    .sidebar {
-        width: 260px;
-        min-width: 260px;
-    }
-
-    .menu-toggle {
-        display: flex;
-        position: fixed;
-        bottom: 20px;
-        left: 20px;
-        z-index: 1001;
-        width: 50px;
-        height: 50px;
-        background: var(--gradient-primary);
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        box-shadow: var(--shadow-lg);
-        align-items: center;
-        justify-content: center;
-    }
-
     .top-nav ul {
         display: none;
     }
 
-    .sidebar {
-        position: fixed;
-        left: -100%;
-        top: 0;
-        width: 80%;
-        max-width: 300px;
-        height: 100vh;
-        background: white;
-        z-index: 1000;
-        transition: var(--transition-fast);
-        box-shadow: none;
+    .sections-grid {
+        padding: 40px 0 30px;
     }
 
-    .sidebar.active {
-        left: 0;
-        box-shadow: var(--shadow-lg);
+    .grid-container {
+        margin-bottom: 30px;
+    }
+
+    .section-card {
+        width: 100%;
+    }
+
+    .sections-grid {
+        padding: 40px 0 30px;
+    }
+
+    .grid-container {
+        margin-bottom: 30px;
+    }
+
+    .section-card {
+        width: 100%;
+    }
+
+    .section-nav {
+        padding: 20px 0;
+    }
+
+    .section-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .section-nav li {
+        margin-bottom: 15px;
+    }
+
+    .section-nav a {
+        color: var(--text-dark);
+        text-decoration: none;
+        font-size: 18px;
+        display: block;
+        padding: 10px 0;
+    }
+
+    .section-nav a.active {
+        color: var(--primary-color);
+        font-weight: 500;
     }
 
     .page-wrapper {
@@ -437,6 +458,93 @@ body.home header {
     .sidebar,
     .section-nav {
         height: auto;
+    }
+
+    /* Бургер */
+    .burger-menu {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 9999;
+    }
+
+    .burger-menu span {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: white;
+        transition: all 0.3s ease;
+        left: 0;
+    }
+
+    .burger-menu span:nth-child(1) { top: 0; }
+    .burger-menu span:nth-child(2) { top: 9px; }
+    .burger-menu span:nth-child(3) { top: 18px; }
+
+    .burger-menu.active span:nth-child(1) {
+        transform: rotate(45deg);
+        top: 9px;
+    }
+
+    .burger-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger-menu.active span:nth-child(3) {
+        transform: rotate(-45deg);
+        top: 9px;
+    }
+
+    /* Мобильное меню */
+    .sidebar {
+        display: block !important;
+        position: fixed;
+        top: 90px;
+        left: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: calc(100vh - 90px);
+        background: white;
+        z-index: 9998;
+        padding: 30px;
+        transition: all 0.3s ease;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        overflow-y: auto;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    /* Затемнение фона при открытом меню */
+    body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 9997;
+    }
+
+    body.menu-open::after {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Скрываем десктопное меню */
+    .top-nav ul {
+        display: none;
     }
 }
 
@@ -1408,4 +1516,105 @@ body.home header {
     cursor: pointer;
     ...
 }
-*/ 
+*/
+
+/* Мобильное меню */
+@media (max-width: 768px) {
+    .top-nav {
+        position: relative;
+        padding: 15px 20px;
+    }
+
+    .mobilem {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 40px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .mobilem ._line {
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: white;
+        transition: .3s;
+    }
+
+    .mobilem ._line.__1 { top: 30%; }
+    .mobilem ._line.__2 { top: 50%; }
+    .mobilem ._line.__3 { top: 70%; }
+
+    .mobilem.open ._line.__1 {
+        top: 50%;
+        transform: rotate(45deg);
+    }
+
+    .mobilem.open ._line.__2 {
+        opacity: 0;
+    }
+
+    .mobilem.open ._line.__3 {
+        top: 50%;
+        transform: rotate(-45deg);
+    }
+
+    /* Мобильное меню */
+    .sidebar {
+        display: block !important;
+        position: fixed;
+        top: 90px;
+        left: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: calc(100vh - 90px);
+        background: white;
+        z-index: 9998;
+        padding: 30px;
+        transition: all 0.3s ease;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        overflow-y: auto;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    /* Затемнение фона при открытом меню */
+    body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 9997;
+    }
+
+    body.menu-open::after {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Скрываем десктопное меню */
+    .top-nav ul {
+        display: none;
+    }
+
+    /* Стили для пунктов меню */
+    .sidebar .section-nav ul li {
+        margin-bottom: 15px;
+    }
+
+    .sidebar .section-nav ul li a {
+        padding: 10px 0;
+        display: block;
+    }
+} 

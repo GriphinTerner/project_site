@@ -1,26 +1,73 @@
-<footer class="site-footer">
-    <div class="footer-bottom">
-        <p>&copy; 2025 Made by <a href="https://t.me/griphinterner">Griphin Terner</a>. All rights are reserved</p>
-    </div>
-</footer>
-
+<!DOCTYPE html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>...</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
-
 <body>
-    <!-- Существующий контент -->
-    <script src="../js/script.js"></script>
-    <script>
-        const menuToggle = document.querySelector('.menu-toggle');
-    </script>
-
-    <aside class="sidebar" id="sidebar">
-        <nav class="section-nav">
-            <!-- ... -->
+    <header>
+        <nav class="top-nav">
+            <a href="../index.html" class="logo">Психология отношений</a>
+            <div class="burger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul>
+                <li><a href="../index.html">Главная</a></li>
+                <li><a href="#sections">Разделы</a></li>
+                <li><a href="#help">Помощь</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
         </nav>
-    </aside>
-</body> 
+    </header>
+
+    <div class="page-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <nav class="section-nav">
+                <ul>
+                    <!-- ... -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Существующий контент -->
+        <script src="../js/script.js"></script>
+        <script>
+            const menuToggle = document.querySelector('.menu-toggle');
+            document.addEventListener('DOMContentLoaded', function() {
+                const burger = document.querySelector('.burger-menu');
+                const menu = document.querySelector('.sidebar');
+                const body = document.body;
+                
+                if (burger && menu) {
+                    burger.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        burger.classList.toggle('active');
+                        menu.classList.toggle('active');
+                        body.classList.toggle('menu-open');
+                    });
+                }
+            });
+        </script>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const burger = document.querySelector('.burger-menu');
+            const menu = document.querySelector('.sidebar');
+            const body = document.body;
+            
+            if (burger && menu) {
+                burger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    burger.classList.toggle('active');
+                    menu.classList.toggle('active');
+                    body.classList.toggle('menu-open');
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
