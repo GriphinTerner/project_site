@@ -307,8 +307,44 @@ body.home header {
     }
 
     .sidebar {
-        top: 70px;
-        height: calc(100vh - 70px);
+        display: block !important;
+        position: fixed;
+        top: 70px; /* Отступ под хедер */
+        left: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: calc(100vh - 70px); /* Высота с учетом хедера */
+        background: white;
+        z-index: 1000;
+        padding: 30px;
+        transition: all 0.3s ease;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        overflow-y: auto; /* Добавляем скролл для меню */
+        -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    /* Убираем блокировку скролла страницы */
+    body.menu-open {
+        overflow: auto !important;
+        position: relative !important;
+    }
+
+    /* Стили для скроллбара в меню (опционально) */
+    .sidebar::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 2px;
     }
 
     .sections-grid {
@@ -321,18 +357,6 @@ body.home header {
 
     .top-nav ul {
         display: none;
-    }
-
-    .sections-grid {
-        padding: 40px 0 30px;
-    }
-
-    .grid-container {
-        margin-bottom: 30px;
-    }
-
-    .section-card {
-        width: 100%;
     }
 
     .sections-grid {
@@ -545,6 +569,70 @@ body.home header {
     /* Скрываем десктопное меню */
     .top-nav ul {
         display: none;
+    }
+
+    /* Стили для страницы differences.html */
+    .comparison-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .comparison-card {
+        width: 100%;
+        margin: 0;
+    }
+
+    .aspects-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .aspect-card {
+        width: 100%;
+        margin: 0;
+    }
+
+    .aspect-comparison {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .immature-aspect,
+    .mature-aspect {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .development-timeline {
+        flex-direction: column;
+        padding: 20px 0;
+    }
+
+    .timeline-item {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    /* Общие стили для контента */
+    .content-article {
+        padding: 15px;
+        overflow-x: hidden;
+    }
+
+    .article-content {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Исправление масштабирования изображений */
+    .article-image {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        object-fit: cover;
     }
 }
 
