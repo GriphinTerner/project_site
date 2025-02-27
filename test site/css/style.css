@@ -89,7 +89,7 @@ p {
 /* Хедер */
 header {
     background: var(--gradient-dark);
-    padding: 15px 0;
+    padding: 12px 0;
     position: fixed;
     width: 100%;
     top: 0;
@@ -104,21 +104,32 @@ body.home header {
 }
 
 .top-nav {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 30px;
+    padding: 8px 20px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
-.logo {
+.logo-wrapper {
+    flex: 1;
+    text-align: center;
+}
+
+/* Стили для логотипа на всех страницах */
+.top-nav .logo-wrapper .logo {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2em;
-    color: var(--secondary-color);
-    text-decoration: none;
+    font-size: 28px;
     font-weight: 600;
+    color: white;
+    text-decoration: none;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.burger-menu {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .top-nav ul {
@@ -292,18 +303,25 @@ body.home header {
 
     .top-nav {
         padding: 10px 20px;
+        display: flex;
+        justify-content: center;
+        position: relative;
     }
 
-    .top-nav .logo {
+    .logo-wrapper {
+        flex: 1;
+        text-align: center;
+    }
+
+    .logo {
         font-size: 24px;
-        line-height: 1.2;
     }
 
     .burger-menu {
+        position: absolute;
+        right: 20px;
         top: 50%;
         transform: translateY(-50%);
-        width: 24px;
-        height: 18px;
     }
 
     .sidebar {
@@ -633,6 +651,11 @@ body.home header {
         height: auto;
         max-width: 100%;
         object-fit: cover;
+    }
+
+    /* Медиа-запрос для мобильных */
+    .top-nav .logo-wrapper .logo {
+        font-size: 24px;
     }
 }
 
