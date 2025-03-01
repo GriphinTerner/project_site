@@ -192,4 +192,23 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Menu active:', menu.classList.contains('active'));
         });
     }
+});
+
+// Обработка кликов по карточкам типов отношений
+document.addEventListener('DOMContentLoaded', () => {
+    const typeCards = document.querySelectorAll('.type-card');
+    
+    typeCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Если карточка уже развернута, сворачиваем её
+            if (card.classList.contains('expanded')) {
+                card.classList.remove('expanded');
+            } else {
+                // Сворачиваем все карточки
+                typeCards.forEach(c => c.classList.remove('expanded'));
+                // Разворачиваем кликнутую карточку
+                card.classList.add('expanded');
+            }
+        });
+    });
 }); 
