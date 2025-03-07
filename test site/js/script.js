@@ -8,14 +8,11 @@ function scrollActiveMenuItemToPosition() {
     const sidebarHeight = sidebar.offsetHeight;
     const itemHeight = activeItem.offsetHeight;
     const itemPosition = activeItem.offsetTop;
-    const desiredPosition = itemHeight; // Высота одного пункта меню (чтобы активный пункт был вторым)
+    const desiredPosition = itemHeight;
     
-    // Проверяем, возможно ли прокрутить до желаемой позиции
     const maxScroll = sidebar.scrollHeight - sidebarHeight;
-    
     let scrollTo = itemPosition - desiredPosition;
     
-    // Если прокрутка выходит за пределы, устанавливаем максимальное или минимальное значение
     if (scrollTo > maxScroll) {
         scrollTo = maxScroll;
     } else if (scrollTo < 0) {
@@ -194,21 +191,52 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Обработка кликов по карточкам типов отношений
-document.addEventListener('DOMContentLoaded', () => {
-    const typeCards = document.querySelectorAll('.type-card');
-    
-    typeCards.forEach(card => {
-        card.addEventListener('click', () => {
-            // Если карточка уже развернута, сворачиваем её
+
+// Ждем полной загрузки DOM
+document.addEventListener('DOMContentLoaded', function() {
+    // Обработка кликов по карточкам
+    const typeGrid = document.querySelector('.type-grid');
+    if (typeGrid) {
+        typeGrid.addEventListener('click', function(e) {
+            const card = e.target.closest('.type-card');
+            if (!card) return;
+
+            console.log('Card clicked:', card); // Отладочный лог
+
             if (card.classList.contains('expanded')) {
                 card.classList.remove('expanded');
             } else {
-                // Сворачиваем все карточки
-                typeCards.forEach(c => c.classList.remove('expanded'));
-                // Разворачиваем кликнутую карточку
+                // Закрываем все открытые карточки
+                document.querySelectorAll('.type-card.expanded').forEach(expandedCard => {
+                    expandedCard.classList.remove('expanded');
+                });
+                // Открываем текущую карточку
                 card.classList.add('expanded');
             }
         });
-    });
+    }
+
+    // Обработка мобильного меню
+    const menuToggle = document.querySelector('.burger-menu');
+    const sidebar = document.querySelector('.sidebar');
+    const body = document.body;
+
+    if (menuToggle && sidebar) {
+        menuToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            menuToggle.classList.toggle('active');
+            sidebar.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        });
+
+        // Закрытие меню при клике вне его
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !menuToggle.contains(e.target) && sidebar.classList.contains('active')) {
+                menuToggle.classList.remove('active');
+                sidebar.classList.remove('active');
+                body.classList.remove('menu-open');
+            }
+        });
+    }
 }); 

@@ -134,41 +134,5 @@
     </footer>
 
     <script src="../js/script.js"></script>
-    <script>
-        // Обработка кликов по карточкам
-        document.querySelectorAll('.type-card').forEach(card => {
-            card.addEventListener('click', function() {
-                // Если карточка уже открыта, закрываем её
-                if (this.classList.contains('expanded')) {
-                    this.classList.remove('expanded');
-                } else {
-                    // Закрываем все открытые карточки
-                    document.querySelectorAll('.type-card.expanded').forEach(expandedCard => {
-                        expandedCard.classList.remove('expanded');
-                    });
-                    // Открываем текущую карточку
-                    this.classList.add('expanded');
-                }
-            });
-        });
-
-        const menuToggle = document.querySelector('.burger-menu');
-        const sidebar = document.querySelector('.sidebar');
-        const body = document.body;
-
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            sidebar.classList.toggle('active');
-            body.classList.toggle('menu-open');
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!sidebar.contains(e.target) && !menuToggle.contains(e.target) && sidebar.classList.contains('active')) {
-                menuToggle.classList.remove('active');
-                sidebar.classList.remove('active');
-                body.classList.remove('menu-open');
-            }
-        });
-    </script>
 </body>
 </html> 
